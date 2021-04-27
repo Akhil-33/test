@@ -1,19 +1,12 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 .App {
   text-align: center;
 }
-* {
-  box-sizing: border-box;
+.align-right{ text-align: right;}
+.search{
+  margin-top: 30px;
 }
 
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+.form-item{
+  padding-bottom:15px;
 }

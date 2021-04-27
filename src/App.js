@@ -57,6 +57,7 @@ const App = () => {
   const [name, setName] = React.useState('');
   const [columnName, setColumnName] = React.useState(0);
 
+
   function handleChange(event) {
     setName(event.target.value);
   }
@@ -85,28 +86,26 @@ const App = () => {
   }
   return (
     <div className="row">
-      <div className="column">
-      <AddItem
-        name={name}
-        onChange={handleChange}
-        onChange2={handleColumnFlag}
-        onAdd={handleAdd}
-        columnName={columnName}
-      />
+      <div className="col-md-3 col-xs-12">
+        <AddItem
+          name={name}
+          onChange={handleChange}
+          onChange2={handleColumnFlag}
+          onAdd={handleAdd}
+          columnName={columnName}
+        />
       </div>
-      <div className="column">
-        <p>Column1</p>
-      <List1
-        list1={listData1.list1}
-        onRemove1={handleDeleteColumn1}
-      />
+      <div className="col-md-4 col-xs-12">
+        <List1
+          list1={listData1.list1}
+          onRemove1={handleDeleteColumn1}
+        />
       </div>
-      <div className="column">
-      <p>Column2</p>
-      <List2
-        list2={listData2.list2}
-        onRemove2={handleDeleteColumn2}
-      />
+      <div className="col-md-4 col-xs-12">
+        <List2
+          list2={listData2.list2}
+          onRemove2={handleDeleteColumn2}
+        />
       </div>
     </div>
   );
@@ -119,76 +118,72 @@ const AddItem = ({
   onAdd,
   columnName,
 }) => (
-  <div>
-    <input
-      type="text"
-      value={name}
-      onChange={onChange}
-      placeholder="ENTER ITEM"
-    />
-    <br />
-    <select onChange={onChange2} value={columnName}>
-      <option>Choose Column</option>
-      <option value="1">Column1</option>
-      <option value="2">Colomn2</option>
-    </select>
-    <br />
-    <button type="button" onClick={onAdd}>
-      Add Item
+  <div className="row">
+    <div  className="col-md-12 col-sm-3 form-item">
+      <input
+        type="text"
+        className="form-control"
+        value={name}
+        onChange={onChange}
+        placeholder="ENTER ITEM"
+      />
+    </div>
+    <div className="col-md-12 col-sm-3  form-item">
+      <select onChange={onChange2} value={columnName} className="form-control">
+        <option>Choose Column</option>
+        <option value="1">Column1</option>
+        <option value="2">Colomn2</option>
+      </select>
+    </div>
+    <div className="col-md-12 col-sm-3  form-item">
+      <button type="button" onClick={onAdd} className="btn btn-secondary">      Add Item
     </button>
-    <br />
-    <input type="text" placeholder="SEARCH ITEM" />
+    </div>
+    <div className="col-md-12 col-sm-3  form-item search">
+      <input type="text" className="form-control" placeholder="SEARCH ITEM" />
+    </div>
   </div>
 );
 
 const List1 = ({ list1, onRemove1 }) => (
   <div >
-    <ul
-      style={{
-        border: '1px solid black',
-        width: '100px',
-        height: '100px',
-      }}
-    >
-      {list1.map((item) => (
-        <Item1 key={item.id} item={item} onRemove1={onRemove1} />
-      ))}
-    </ul>
+    <table className="table table-striped">
+      <tbody>
+        <tr><th colSpan="2"> Column1</th></tr>
+        {list1.map((item) => (
+          <Item1 key={item.id} item={item} onRemove1={onRemove1} />
+        ))}
+
+      </tbody>
+    </table>
   </div>
 );
 
 const Item1 = ({ item, onRemove1 }) => (
-  <li>
-    <span>{item.name}</span>
-    <button type="button" onClick={() => onRemove1(item.id)}>
-      Remove
-    </button>
-  </li>
+  <tr>
+    <td>{item.name}</td>
+    <td className="align-right"><button type="button" onClick={() => onRemove1(item.id)}>x</button> </td>
+  </tr>
 );
 
 const List2 = ({ list2, onRemove2 }) => (
   <div>
-    <ul
-      style={{
-        border: '1px solid black',
-        width: '100px',
-        height: '100px',
-      }}
-    >
-      {list2.map((item) => (
-        <Item2 key={item.id} item={item} onRemove2={onRemove2} />
-      ))}
-    </ul>
+    <table className="table table-striped">
+      <tbody>
+        <tr><th colSpan="2"> Column2</th></tr>
+        {list2.map((item) => (
+          <Item2 key={item.id} item={item} onRemove2={onRemove2} />
+        ))}
+      </tbody>
+    </table>
   </div>
 );
 
 const Item2 = ({ item, onRemove2 }) => (
-  <li>
-    <span>{item.name}</span>
-    <button type="button" onClick={() => onRemove2(item.id)}>
-      Remove
-    </button>
-  </li>
+  <tr>
+    <td>{item.name}</td>
+    <td className="align-right"><button type="button" onClick={() => onRemove2(item.id)}>x</button> </td>
+  </tr>
 );
 
 export default App;
